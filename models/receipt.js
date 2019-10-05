@@ -2,17 +2,17 @@ module.exports = function(sequelize, DataTypes) {
     var Receipt  = sequelize.define("Receipts", {
       id: { 
         primaryKey: true,
-        type: DataTypes.INT,
+        type: DataTypes.INTEGER,
         unique: {
           args: true
         },
         autoIncrement: true,
       },
       
-      card_number: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
+      // card_number: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false
+      // },
   
       store_name: {
         type: DataTypes.STRING,
@@ -32,11 +32,6 @@ module.exports = function(sequelize, DataTypes) {
       category: {
         type: DataTypes.STRING,
         allowNull: false
-      },
-
-      user_id: {
-        type: DataTypes.INT,
-        allowNull: false
       }
       
     });
@@ -44,9 +39,9 @@ module.exports = function(sequelize, DataTypes) {
     Receipt.associate = function(models) {
       // Associating Author with Posts
       // When an Author is deleted, also delete any associated Posts
-      Receipt.belongsTo(models.User, {
+      Receipt.belongsTo(models.Cards, {
         onDelete: "NO ACTION",
-        foreignKey: 'user_id'
+        // foreignKey: 'card_number'
       });
     };
 

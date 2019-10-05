@@ -10,17 +10,24 @@ CREATE TABLE Users (
     PRIMARY KEY (id)
 );
 
+-- Table with 
+CREATE TABLE Cards (
+    id INT NOT NULL AUTO_INCREMENT,
+    userId INT NOT NULL,
+    card_number VARCHAR(4) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 -- Table holding the receipts
 CREATE TABLE Receipts (
     id INT NOT NULL AUTO_INCREMENT,
     -- possible issues with numbers starting with 0 (possibly switch this to a string)
-    card_number VARCHAR(4) NOT NULL,
+    cardId VARCHAR(4) NOT NULL,
     store_name VARCHAR(45) NOT NULL,
     --  YYYY-MM-DD
     purchase_date DATE NOT NULL,
     total_cost FLOAT(20,2) NOT NULL,
     category VARCHAR(45) NOT NULL,
     -- will be filled out by authentication when logged in
-    user_id INT NOT NULL,
     PRIMARY KEY (id)
 );

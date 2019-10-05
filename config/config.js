@@ -7,7 +7,10 @@ module.exports =
     "password": process.env.LOCALSQLPWD,
     "database": process.env.LOCALSQLDATABASE,
     "host": process.env.LOCALSQLHOST,
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "define": {
+      "timestamps": false
+    }
   },
   "test": {
     "username": "root",
