@@ -21,5 +21,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
+
+  User.associate = function(models) {
+    // Associating User with Receipts
+    // When an User is deleted, also delete any associated Receipts
+    User.hasMany(models.Receipts, {
+      onDelete: "CASCADE"
+    });
+  };
+
   return User;
 };

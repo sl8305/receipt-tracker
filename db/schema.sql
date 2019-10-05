@@ -13,12 +13,14 @@ CREATE TABLE Users (
 -- Table holding the receipts
 CREATE TABLE Receipts (
     id INT NOT NULL AUTO_INCREMENT,
-    card_number INT(4) NOT NULL,
+    -- possible issues with numbers starting with 0 (possibly switch this to a string)
+    card_number VARCHAR(4) NOT NULL,
     store_name VARCHAR(45) NOT NULL,
     --  YYYY-MM-DD
     purchase_date DATE NOT NULL,
     total_cost FLOAT(20,2) NOT NULL,
     category VARCHAR(45) NOT NULL,
-    user_id INT NOT NULL AUTO INCREMENT,
+    -- will be filled out by authentication when logged in
+    user_id INT NOT NULL,
     PRIMARY KEY (id)
 );

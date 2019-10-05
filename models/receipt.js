@@ -9,18 +9,47 @@ module.exports = function(sequelize, DataTypes) {
         autoIncrement: true,
       },
       
-      username: {
+      card_number: {
         type: DataTypes.STRING,
         allowNull: false
       },
   
-      password: {
+      store_name: {
         type: DataTypes.STRING,
-  
-        // validation function
+        allowNull: false
+      },
+
+      purchase_date: {
+        type: DataTypes.DATE,
+        allowNull: false
+      }, 
+
+      total_cost: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+      }, 
+
+      category: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+
+      user_id: {
+        type: DataTypes.INT,
         allowNull: false
       }
+      
     });
+
+    Receipt.associate = function(models) {
+      // Associating Author with Posts
+      // When an Author is deleted, also delete any associated Posts
+      Receipt.belongsTo(models.User, {
+        onDelete: "NO ACTION",
+        foreignKey: 'user_id'
+      });
+    };
+
     return Receipt;
   };
   
