@@ -1,14 +1,14 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
+  // Load index page - log in page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
-    });
+    res.render("index", {});
+  });
+
+  // posting new user credentials
+  app.post("/", function(req, res){
+    db.Users.create()
   });
 
   // Load example page and pass in an example by id

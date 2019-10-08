@@ -8,11 +8,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         autoIncrement: true,
       },
-      
-      // card_number: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false
-      // },
   
       store_name: {
         type: DataTypes.STRING,
@@ -37,11 +32,9 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Receipt.associate = function(models) {
-      // Associating Author with Posts
-      // When an Author is deleted, also delete any associated Posts
+      // Reciepts belong under a  card
       Receipt.belongsTo(models.Cards, {
         onDelete: "NO ACTION",
-        // foreignKey: 'card_number'
       });
     };
 

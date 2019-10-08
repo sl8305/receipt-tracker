@@ -9,11 +9,6 @@ module.exports = function(sequelize, DataTypes) {
         autoIncrement: true,
       },
 
-    //   userId: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false
-    //   },
-
       card_number: {
         type: DataTypes.STRING,
         allowNull: false
@@ -25,12 +20,13 @@ module.exports = function(sequelize, DataTypes) {
       // Associating card with user
       Card.belongsTo(models.Users, {
         onDelete: "CASCADE",
-        // foreignKey: 'userId'
       });
 
       Card.hasMany(models.Receipts, {
         onDelete: "CASCADE",
         primaryKey: "card_number"
+        // joined via the card_number column
+        // when the card is deleted, all associated reciepts will also be deleted
       });
     };
 
