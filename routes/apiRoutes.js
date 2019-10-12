@@ -107,18 +107,6 @@ module.exports = function(app) {
   });
 
   // +++++++++ POST CALLS +++++++++
-  // create a user information
-  // app.post("/api/user", function(req, res) {
-  //   // set the new username and password to the input
-  //   db.Users.create(req.body).then(function(dbUserLogIn) {
-  //     res.json(dbUserLogIn);
-  //     console.log("dbUserLogin: "+dbUserLogIn);
-  //     let createUserObject = {
-  //       userLogIn: dbUserLogIn
-  //     };
-  //     res.render("index",createUserObject);
-  //   });
-  // });
 
   // adding card
   app.post("/api/card", function(req, res) {
@@ -224,20 +212,19 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
-  // // Route for getting some data about our user to be used client side
-  // app.get("/api/user_data", function(req, res) {
-  //   if (!req.user) {
-  //     // The user is not logged in, send back an empty object
-  //     res.json({});
-  //   } else {
-  //     // Otherwise send back the user's email and id
-  //     // Sending back a password, even a hashed password, isn't a good idea
-  //     res.json({
-  //       email: req.user.email,
-  //       id: req.user.id
-  //     });
-  //   }
-  // });
+  // Route for getting some data about our user to be used client side
+  app.get("/api/user_data", function(req, res) {
+    if (!req.user || req.user=== null || req.user === undefined) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        id: req.user.id
+      });
+    }
+  });
 
   // +++++++++++ PUT REQUESTS ++++++++
   // nice to have
