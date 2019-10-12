@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="card mt-4">
+        <div class="card-body">
+
+          <h4>Welcome {{username}}</h4>
+
+          <h5 class="card-title">ADD RECEIPTS</h5>
+          <hr>
+
+
+          <div id="receiptForm">
+            <form>
+              {{!-- card# --}}
+              <div class="form-group">
+                <label for="formGroupExampleInput">Card#:</label>
+                <input type="text" class="form-control" id="cardNum" placeholder="Last 4 digits">
+              </div>
+
+              {{!-- Store Name --}}
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Store Name:</label>
+                <input type="text" class="form-control" id="storeName" placeholder="Name of store">
+              </div>
+
+              {{!-- Purchase Date --}}
+              <div class="form-group">
+                <label for="formGroupExampleInput2"> Purchase Date</label>:</label>
+                <input type="date" class="form-control" id="purchaseDate" placeholder="Purchase Date">
+              </div>
+
+              {{!-- Total Cost --}}
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Total Cost:</label>
+                <input type="text" class="form-control" id="totalCost" placeholder="Total cost">
+              </div>
+
+              
+              {{!-- Category --}}
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Category:</label>
+                <input type="text" class="form-control" id="category" placeholder="Category of purchase">
+              </div>
+
+              {{!-- submit button --}}
+              <button type="submit" class="btn btn-primary mb-2">Submit</button>
+
+            </form>
+
+
+          </div>
+
+          <a href="/">← Back To Home</a>
+          <a href="/viewReceipt/{{{id}}}" >Skip</a >
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/createReceipts.js"></script>

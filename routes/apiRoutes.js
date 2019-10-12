@@ -13,12 +13,14 @@ module.exports = function(app) {
     }).then(function(dbUserCards) {
       // returning json object to test route using postman
       res.json(dbUserCards);
-
+      console.log(dbUserCards + "card");
       // returning handlebars object
-      // let hbsObject = {
-      //   userReceipts: dbUserReceipts
-      // };
-      // res.render("example", hbsObject);
+      let getAllUser = {
+        
+        userReceipts: dbUserCards
+      };
+
+      res.render("index", getAllUser);
     });
   });
 
@@ -35,14 +37,16 @@ module.exports = function(app) {
         model: db.Cards,
         attributes: ["card_number"]
       }
-    }).then(function(dbUserCards) {
+    }).then(function(dbFindUser) {
 
       // returning the data as a handlebar object to use in our handlebars files
-      res.json(dbUserCards);
-      // let hbsObject = {
-      //   userReceipts: dbUserCards
-      // };
-      // res.render("example", hbsObject);
+      res.json(dbFindUser);
+
+      let findUserObj = {
+        findUser: dbFindUser
+      };
+      res.render("index",findUserObj);
+      res.render("addReciepts", findUserObj);
     });
   });
 
@@ -74,8 +78,7 @@ module.exports = function(app) {
       },  
       include: {
         // returns the all the receipts associated with the userid
-        model: db.Receipts,
-        // attributes: ["store_name", "purchase_date", "total_cost", "category"]
+        model: db.Receipts
       }
     }).then(function(dbCardReceipts) {
 
@@ -105,25 +108,30 @@ module.exports = function(app) {
 
   // +++++++++ POST CALLS +++++++++
   // create a user information
-  app.post("/api/user", function(req, res) {
-    // set the new username and password to the input
-    db.Users.create(req.body).then(function(dbUserLogIn) {
-      res.json(dbUserLogIn);
-      
-      let hbsObject = {
-        userLogIn: dbUserLogIn
-      };
-      res.render("example",hbsObject);
-    });
-  });
+  // app.post("/api/user", function(req, res) {
+  //   // set the new username and password to the input
+  //   db.Users.create(req.body).then(function(dbUserLogIn) {
+  //     res.json(dbUserLogIn);
+  //     console.log("dbUserLogin: "+dbUserLogIn);
+  //     let createUserObject = {
+  //       userLogIn: dbUserLogIn
+  //     };
+  //     res.render("index",createUserObject);
+  //   });
+  // });
 
   // adding card
   app.post("/api/card", function(req, res) {
     db.Cards.create({
           UserId: req.body.userId,
           card_number: req.body.card_number,
-      }).then(function(dbUserLogIn) {
-      res.json(dbUserLogIn);
+      }).then(function(dbCardCreate) {
+      res.json(dbCardCreate);
+
+      let createCardObj = {
+        cardCreate: dbCardCreate
+      };
+      res.render("addReceipt",createCardObj);
 
     });
   });
@@ -216,20 +224,20 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
-  // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", function(req, res) {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-      });
-    }
-  });
+  // // Route for getting some data about our user to be used client side
+  // app.get("/api/user_data", function(req, res) {
+  //   if (!req.user) {
+  //     // The user is not logged in, send back an empty object
+  //     res.json({});
+  //   } else {
+  //     // Otherwise send back the user's email and id
+  //     // Sending back a password, even a hashed password, isn't a good idea
+  //     res.json({
+  //       email: req.user.email,
+  //       id: req.user.id
+  //     });
+  //   }
+  // });
 
   // +++++++++++ PUT REQUESTS ++++++++
   // nice to have

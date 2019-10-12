@@ -1,3 +1,9 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="card mt-4">
+        <div class="card-body">
+
 <div id="entry">
   <h1> Welcome to Receipt-Tracker </h1>
   <p>Please provide your login information below or create a new account</p>
@@ -9,22 +15,26 @@
     {{!-- username --}}
     <div class="form-group">
       <label for="formGroupExampleInput">Username:</label>
-      <input type="text" class="form-control" id="username" placeholder="username input">
+      <input type="text" class="form-control" id="loginUsername" placeholder="username input">
     </div>
 
     {{!-- password --}}
     <div class="form-group">
       <label for="formGroupExampleInput2">Password:</label>
-      <input type="text" class="form-control" id="password" placeholder="password input">
+      <input type="text" class="form-control" id="loginPassword" placeholder="password input">
     </div>
 
     {{!-- submit button --}}
-    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    <button type="submit" id="logIn" class="btn btn-primary mb-2">Submit</button>
     <button type="submit" class="btn btn-primary mb-2">Create new account</button>
   </form>
 </div>
 
-
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/login.js"></script>
