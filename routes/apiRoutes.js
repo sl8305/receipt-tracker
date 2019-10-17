@@ -56,15 +56,16 @@ module.exports = function(app) {
     // we are 'including' all the receipts under all Cards.
     db.Cards.findAll({
       include: [db.Receipts]
-    }).then(function(dbCardsReceipts) {
+    }).then(function(dbShowCards) {
+      // console.log(dbShowCards[0].dataValues);
       // returning json object to test route using postman
-      res.json(dbCardsReceipts);
+      res.json(dbShowCards);
 
-      // returning handlebars object
-      // let hbsObject = {
-      //   userReceipts: dbUserReceipts
-      // };
-      // res.render("example", hbsObject);
+      //returning handlebars object
+      let showCards = {
+        userCards: dbShowCards
+      };
+      res.render("loadCards", showCards);
     });
   });
 
@@ -216,10 +217,11 @@ module.exports = function(app) {
   app.get("/api/user_data", function(req, res) {
     if (!req.user || req.user=== null || req.user === undefined) {
       // The user is not logged in, send back an empty object
+      console.log("user isn't logged in");
       res.json({});
     } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
+      console.log("user id: " + req.user.id);
+      // Otherwise send back the user's id
       res.json({
         id: req.user.id
       });

@@ -5,10 +5,6 @@ $(document).ready(function() {
     var purchaseDate = $("#purchaseDate");
     var totalCost = $("#totalCost");
     var category = $("#category");
-    // var userData;
-
-
-
 
       // When the form is submitted, we validate there's an email and password entered
       $("#submitReceipt").on("click", function(event) {
@@ -92,27 +88,28 @@ $(document).ready(function() {
         // if the card is not attatched to the account, add the card
         // if they have the card do nothing.
 
-      });
 
-//       // addReceipt does a post to our "api/login" route and if successful
-//       function addReceipt(storeName, purchaseDate, totalCost, category, cardId) {
-//         $.post("/api/receipt", {
-//             store_name: storeName,
-//             purchase_date: purchaseDate,
-//             total_cost: totalCost,
-//             category: category,
-//             CardId: cardId
-//         })
-//           .then(function(data) {
-            
-//             // move to the show cards page
-//             window.location.replace("/viewReceipt/" + data.id);
-//           })
-//           .catch(function(err) {
-//             // If there's an error, log the error
-//             alert("Invalid username or password. Please try again");
-//             console.log(err);
-//           });
-//       };
-//   });
+    // addReceipt adds the rest of the user input into the database as a receipt 
+    function addReceipt(storeName, purchaseDate, totalCost, category, cardId) {
+      $.post("/api/receipt", {
+          store_name: storeName,
+          purchase_date: purchaseDate,
+          total_cost: totalCost,
+          category: category,
+          CardId: cardId
+      })
+        .then(function(data) {
+          
+          // move to the show cards page
+          window.location.replace("/viewReceipt/" + data.id);
+        })
+        .catch(function(err) {
+          // If there's an error, log the error
+          alert("Invalid username or password. Please try again");
+          console.log(err);
+        });
+    };
+});
+
+
   

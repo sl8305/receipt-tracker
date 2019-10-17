@@ -42,17 +42,16 @@ module.exports = function(app) {
       include: {
         // returns the all the cards associated with the userid
         model: db.Cards,
-        attributes: ["card_number"]
+        attributes: ["card_number","id"]
       }
     }).then(function(dbLoadCards) {
-      // console.log(dbLoadCards.dataValues);
-      
+      // console.log(dbLoadCards.dataValues.Cards[0]);
+
       let loadCardObj = {
         id: dbLoadCards.dataValues.id,
         username: dbLoadCards.dataValues.username,
-        password: dbLoadCards.dataValues.password,
-        // create loop for showing all cards
-        cards: dbLoadCards.dataValues.Cards[0].dataValues.card_number
+        // pass in array of cards
+        cards: dbLoadCards.dataValues.Cards 
       };
 
       res.render ("loadCards", loadCardObj);

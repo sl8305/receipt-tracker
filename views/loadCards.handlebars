@@ -7,13 +7,14 @@
           <h4>Welcome {{username}}</h4>
 
           <h5 class="card-title">LOAD CARDS</h5>
-          <p>
-            <strong>ID</strong>: {{id}}</p>
-          <p>
-          <p>
-            <strong>Card</strong>: {{cards}}</p>
-          <p>
 
+          <ul>
+            {{#each cards }}
+            <p>Card id: {{dataValues.id}}</p>
+            <p>Card number: {{dataValues.card_number}}</p>
+            {{/each}}
+          </ul>
+          
             <a href="/">← Back To Home</a>
             <a href="/addReceipt/{{{id}}}">Add Receipt</a>
         </div>

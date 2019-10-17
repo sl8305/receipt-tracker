@@ -44,4 +44,11 @@ $(document).ready(function() {
           console.log(err);
         });
     };
+
+    //if the create user button is selected change to the create user page
+    $("#newUserBtn").on("click", function(event) {
+      event.preventDefault();
+      window.location.replace("/createUser");
+    });
+
 });
