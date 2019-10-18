@@ -13,19 +13,19 @@ module.exports = function(app) {
     });
   });
 
-  // Load "logged in" page and pass in the id of the user 
+  // Load "logged in" page and pass in the id and name of the user 
   app.get("/addReceipt/:id", function(req, res) {
     db.Users.findOne({ 
       where: { 
         id: req.params.id 
       } 
     }).then(function(dbLoggedIn) {
-      // console.log(dbLoggedIn.dataValues);
+      console.log(dbLoggedIn.dataValues);
 
+      // returning the username and id of the logged in user
       let addReceiptObj = {
         id: dbLoggedIn.dataValues.id,
-        username: dbLoggedIn.dataValues.username,
-        password: dbLoggedIn.dataValues.password
+        username: dbLoggedIn.dataValues.username
       };
 
       res.render ("addReceipt", addReceiptObj);
@@ -33,7 +33,7 @@ module.exports = function(app) {
     
   });
 
-  // Load card display
+  // Load card display - passes the user id, username and cards associated
   app.get("/viewReceipt/:userId", function(req, res) {
     db.Users.findOne({ 
       where: { 
@@ -45,7 +45,6 @@ module.exports = function(app) {
         attributes: ["card_number","id"]
       }
     }).then(function(dbLoadCards) {
-      // console.log(dbLoadCards.dataValues.Cards[0]);
 
       let loadCardObj = {
         id: dbLoadCards.dataValues.id,
@@ -57,9 +56,9 @@ module.exports = function(app) {
       res.render ("loadCards", loadCardObj);
       // console.log(loadCardObj.cards);
     });
-    
   });
 
+  // Passes the user's id, username, password and cards 
   app.get("/settings/:userId", function (req, res) {
     db.Users.findOne({
       where: {

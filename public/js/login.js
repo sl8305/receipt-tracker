@@ -4,7 +4,6 @@ $(document).ready(function() {
   var passwordInput = $("#loginPassword");
 
 
-  console.log("username: "+ usernameInput + "\npassword: "+passwordInput);
     // When the form is submitted, we validate there's an email and password entered
     $("#logIn").on("click", function(event) {
       event.preventDefault();
@@ -35,7 +34,7 @@ $(document).ready(function() {
       })
         .then(function(data) {
           // redirecting to the next page (add receipts)
-          console.log("logged in under: ", data.username);
+          console.log("logged in under: ", data);
           window.location.replace("/addReceipt/" + data.id);
         })
         .catch(function(err) {
