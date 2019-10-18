@@ -66,7 +66,7 @@ module.exports = function(app) {
     });
   });
 
-  // Route for getting some data about our user to be used client side
+  // GET Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
       if (!req.user || req.user=== null || req.user === undefined) {
         // The user is not logged in, send back an empty object
@@ -121,11 +121,8 @@ module.exports = function(app) {
           res.json(dbCreateReceipt);
           console.log("receiptcreated", dbCreateReceipt);
         });
-
       });  
-
   });
-
 
 
   // DELETE a specific user 

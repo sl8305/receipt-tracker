@@ -1,4 +1,5 @@
 var db = require("../models");
+var isAuthenticated = require("../config/isAuthenticated");
 
 module.exports = function(app) {
   // Load index page - log in page
@@ -14,13 +15,14 @@ module.exports = function(app) {
   });
 
   // Load "logged in" page and pass in the id and name of the user 
-  app.get("/addReceipt/:id", function(req, res) {
+  app.get("/addReceipt/:id", isAuthenticated, function(req, res) {
     db.Users.findOne({ 
       where: { 
         id: req.params.id 
       } 
     }).then(function(dbLoggedIn) {
       console.log(dbLoggedIn.dataValues);
+      
 
       // returning the username and id of the logged in user
       let addReceiptObj = {
@@ -34,7 +36,7 @@ module.exports = function(app) {
   });
 
   // Load card display - passes the user id, username and cards associated
-  app.get("/viewReceipt/:userId", function(req, res) {
+  app.get("/viewReceipt/:userId", isAuthenticated, function(req, res) {
     db.Users.findOne({ 
       where: { 
         id: req.params.userId 
@@ -59,7 +61,7 @@ module.exports = function(app) {
   });
 
   // Passes the user's id, username, password and cards 
-  app.get("/settings/:userId", function (req, res) {
+  app.get("/settings/:userId", isAuthenticated, function (req, res) {
     db.Users.findOne({
       where: {
         id: req.params.userId

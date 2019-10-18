@@ -74,26 +74,3 @@ $(document).ready(function() {
         });
     };
   });
-
-
-        // $.post("/api/card", {
-        //     userId: userId,
-        //     card_number: cardNumber
-        // })
-        // .then(function(data) {
-        //     // redirecting to the next page (add receipts)
-        //     console.log("Card number: ", data.card_number);
-        //     console.log("id: "+ userId);
-
-        //   })
-        //   .catch(function(err) {
-        //     // If there's an error, log the error
-        //     console.log(err);
-        //   });
-          
-        // if the card is not attatched to the account, add the card
-        // if they have the card do nothing.
-
-
-    
-// });
