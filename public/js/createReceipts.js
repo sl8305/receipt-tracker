@@ -65,7 +65,7 @@ $(document).ready(function() {
         .then(function(data) {
           console.log(data);
           // move to the show cards page
-          // window.location.replace("/viewReceipt/" + data.id);
+          window.location.replace("/viewReceipt/" + data.id);
         })
         .catch(function(err) {
           // If there's an error, log the error
