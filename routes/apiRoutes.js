@@ -102,6 +102,7 @@ module.exports = function(app) {
       where: {
         card_number: req.body.card_number
       }, defaults:{
+        UserId: req.user.id,
         card_number: req.body.card_number
       }}).then(([card, created]) => {
         // console.log(card.dataValues.id);
@@ -121,15 +122,7 @@ module.exports = function(app) {
           console.log("receiptcreated", dbCreateReceipt);
         });
 
-
-
-
-
-
-
-      });    
-
-    
+      });  
 
   });
 
@@ -199,8 +192,6 @@ module.exports = function(app) {
     console.log("logged out");
     res.redirect("/");
   });
-
-
 
   // +++++++++++ PUT REQUESTS ++++++++
   // nice to have

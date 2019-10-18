@@ -29,7 +29,7 @@ $(document).ready(function() {
           totalCost: totalCost.val().trim(),
           category: category.val().trim()
         };
-        // console.log(receiptData.cardNumber, receiptData.storeName, receiptData.purchaseDate, receiptData.totalCost, receiptData.category);
+        console.log(receiptData.cardNumber, receiptData.storeName, receiptData.purchaseDate, receiptData.totalCost, receiptData.category);
         
         console.log("Adding Receipt");
         if (!receiptData.cardNumber || !receiptData.storeName || !receiptData.purchaseDate || !receiptData.totalCost || !receiptData.category ) {
@@ -42,7 +42,7 @@ $(document).ready(function() {
         // addCard(receiptData.card_number);
 
         // adding the receipt to the card under the user
-        addReceipt(receiptData.storeName, receiptData.purchaseDate, receiptData.totalCost, receiptData.category, receiptData.card_number);
+        addReceipt(receiptData.cardNumber, receiptData.storeName, receiptData.purchaseDate, receiptData.totalCost, receiptData.category);
         
         // clearing values in the form
         cardNumber.val("");
@@ -53,18 +53,19 @@ $(document).ready(function() {
       });
   
 // addReceipt adds the rest of the user input into the database as a receipt 
-    function addReceipt(storeName, purchaseDate, totalCost, category, cardId) {
+    function addReceipt(cardNumber, storeName, purchaseDate, totalCost, category) {
+      console.log(cardNumber, storeName, purchaseDate, totalCost, category);
       $.post("/api/receipt", {
+        card_number: cardNumber,
           store_name: storeName,
           purchase_date: purchaseDate,
           total_cost: totalCost,
-          category: category,
-          CardId: cardId
+          category: category
       })
         .then(function(data) {
-          
+          console.log(data);
           // move to the show cards page
-          window.location.replace("/viewReceipt/" + data.id);
+          // window.location.replace("/viewReceipt/" + data.id);
         })
         .catch(function(err) {
           // If there's an error, log the error
