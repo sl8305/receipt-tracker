@@ -7,9 +7,9 @@ $(document).ready(function() {
   $(".viewReceipts").on("click", function(event) {
     event.preventDefault();
   
-    $('<canvas class="myChart" width="400" height="400"></canvas>').appendTo('.graphDiv');
+    $('<canvas id="myChart" width="400" height="400"></canvas>').appendTo('.graphDiv');
 
-    var ctx = document.getElementsByClassName('myChart');
+    var ctx = document.getElementById('myChart');
     var rChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -19,9 +19,17 @@ $(document).ready(function() {
         }],
         labels: ['January', 'February', 'March', 'April']
       },
+      borderColor: 'rgba(0, 0, 255, 0.8)',
+      backgroundColor: 'rgba(255, 0, 0, 0.8)',
       options: {
-          scales: {
-              yAxes: [{
+        legend: {
+          display: false
+        },
+        xAxesID: "Total Cost",
+        yAxesID: "Time",
+        
+        scales: {
+              yAxes: [{ 
                   ticks: {
                       beginAtZero: true
                   }
