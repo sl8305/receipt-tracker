@@ -15,12 +15,12 @@ $(document).ready(function() {
       data: {
         datasets: [{
             label: 'First dataset',
-            data: [0, 20, 40, 50]
+            data: [0, 20, 40, 50],
+            borderColor: "rgb(75, 192, 192)",
+            // backgroundColo: "rgb(173,255,47)",
         }],
         labels: ['January', 'February', 'March', 'April']
       },
-      borderColor: 'rgba(0, 0, 255, 0.8)',
-      backgroundColor: 'rgba(255, 0, 0, 0.8)',
       options: {
         legend: {
           display: false
