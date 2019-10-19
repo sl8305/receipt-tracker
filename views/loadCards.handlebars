@@ -12,9 +12,19 @@
             {{#each cards }}
             <p>Card id: {{dataValues.id}}</p>
             <p>Card number: {{dataValues.card_number}}</p>
-            <canvas id="myChart" width="400" height="400"></canvas>
+            
+            {{!-- button to view the receipts under the card --}}
+            <button class="viewReceipts">View Receipts</button>
+
+            <div class="graphDiv"></div>
+            
             {{/each}}
           </ul>
+
+          
+<script>
+
+</script>
           
             <a href="/">← Back To Home</a>
             <a href="/addReceipt/{{{id}}}">Add Receipt</a>
@@ -25,4 +35,5 @@
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="/js/viewReceipts.js"></script>

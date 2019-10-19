@@ -55,6 +55,7 @@ module.exports = function(app) {
         cards: dbLoadCards.dataValues.Cards 
       };
 
+
       res.render ("loadCards", loadCardObj);
       // console.log(loadCardObj.cards);
     });

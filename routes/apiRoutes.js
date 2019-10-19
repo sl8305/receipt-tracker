@@ -66,6 +66,24 @@ module.exports = function(app) {
     });
   });
 
+  //GET receipts from 
+  app.get("/api/receipt", function(req, res) {
+    db.Receipts.findOne({
+      where: {
+        card_number: req.params.card_number
+      },  
+      include: {
+        // returns the all the receipts associated with the userid
+        model: db.Receipts
+      }
+
+    }).then(function(dbReceiptsList) {
+      // returns all the receipts
+      res.json(dbReceiptsList);
+    });
+  });
+
+
   // GET Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
       if (!req.user || req.user=== null || req.user === undefined) {
