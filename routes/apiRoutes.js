@@ -10,7 +10,6 @@ module.exports = function(app) {
     }).then(function(dbUserCards) {
       // returns all user objects and includes the cards associated to each user
       res.json(dbUserCards);
-
     });
   });
 
@@ -110,6 +109,11 @@ module.exports = function(app) {
     });
   });
 
+  // posting new user credentials
+  app.post("/createUser", function(req, res){
+    db.Users.create();
+  });
+  
   // POST new receipt
   // using findOrCreate - creates the input card if it is not already in the databse
   app.post("/api/receipt", function(req, res) {
@@ -140,6 +144,13 @@ module.exports = function(app) {
           console.log("receiptcreated", dbCreateReceipt);
         });
       });  
+  });
+
+  // posting new user credentials
+  app.post("/", function(req, res){
+    db.Users.create(req.body).then(function(dbNewUser){
+      res.json(dbNewUser);
+    });
   });
 
 
