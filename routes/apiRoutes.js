@@ -3,16 +3,6 @@ var passport = require("../config/passport");
 
 module.exports = function(app) {
 
-  // GET all users + associated cards
-  app.get("/api/user", function(req, res) {
-    db.Users.findAll({
-      include: [db.Cards]
-    }).then(function(dbUserCards) {
-      // returns all user objects and includes the cards associated to each user
-      res.json(dbUserCards);
-    });
-  });
-
   // GET specific user and return their cards 
   app.get("/api/user/:id", function(req, res) {
     db.Users.findOne({
